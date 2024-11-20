@@ -16,16 +16,18 @@ Interfaz de Usuario: Asegúrate de que la interfaz de usuario refleje el estado 
 import "../scss/App.scss";
 import groguImage from "../images/grogu.webp";
 import { useState } from "react";
+import Board from "./Board";
+import Dice from "./Dice";
 
 
 function App() {
   
-function getRandomNumber(max) {
-    return Math.ceil(Math.random() * max);
+const [randomNumber, setRandomNumber]= useState("");
+const rollDice = () =>{
+  const randomNumber = Math.floor(Math.random() *4)+1;
+  setRandomNumber(randomNumber);
+  console.log(randomNumber);
 }
-const randomNumber = getRandomNumber(4);
-
-console.log(randomNumber);
 const [positionGrogu, setpositionGrogu] = useState(0)
 const handleClick =(event) =>{
 
@@ -40,19 +42,10 @@ const handleClick =(event) =>{
           <h1>¡hello!</h1>
         </header>
         <main className="page">
-        
-          <section className="board">
-            <div className="cell"><div className="grogu">👣</div></div>
-            <div className="cell"></div>
-            <div className="cell"></div>
-            <div className="cell"></div>
-            <div className="cell"></div>
-            <div className="cell"></div>
-            <div className="cell"></div>
-          </section>
+        <Board/>
 
           <section>
-            <button className="dice" onClick={getRandomNumber}>Lanzar Dado</button>
+            <Dice onClickDice={rollDice}/>
             <div className="game-status">En curso</div>
           </section>
 
@@ -82,3 +75,18 @@ const handleClick =(event) =>{
 }
 
 export default App
+//Pasos 
+/* Cuando la usuaria haga click en lanzar dado
+ - generar número aleatorio entre 1 y 4
+ - si es 4 --> grogu avanza 1 casilla 
+      y si  es 1 -->quitar una galleta
+      si es 2 --> quitar una huevo
+      si es 3 --> quitar una rana
+- Saber en qué posición se encuentra el grogu o mercancias 
+   - Mostrar en pantalla el estado del juego
+      -si grogu avanza --> mostrar mesanje  "Grogu ha avanzado"
+      -si se quita una galleta --> mostrar mensaje "Se ha quitado una galleta"
+      -si se quita un huevo --> mostrar mensaje "Se ha quitado un huevo"
+      -si se quita una rana --> mostrar mensaje "Se ha quitado una rana"
+
+      */
