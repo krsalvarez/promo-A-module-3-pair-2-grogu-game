@@ -71,12 +71,15 @@ function App() {
         <section>
           <button className="restart-button">Reiniciar Juego</button>
         </section>
-        <Instructions />
+        <Routes>
+          <Route path="/instructions" element={<Instructions />} />
+
+        </Routes>
       </main>
       <Footer />
       <Routes>
-        <Route path="/" />
-        <Route path="/instructions" element={<Instructions />} />
+        <Route path="/" element={<Footer />} />
+
       </Routes>
     </div>
 
