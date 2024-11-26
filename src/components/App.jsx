@@ -18,59 +18,69 @@ import groguImage from "../images/grogu.webp";
 import { useState } from "react";
 import Board from "./Board";
 import Dice from "./Dice";
+import Footer from "./Footer";
+import Instructions from "./Instructions";
+
+import { Routes, Route } from "react-router-dom";
 
 
 function App() {
-  
-const [randomNumber, setRandomNumber]= useState("");
-const rollDice = () =>{
-  const randomNumber = Math.floor(Math.random() *4)+1;
-  setRandomNumber(randomNumber);
-  console.log(randomNumber);
-}
-const [positionGrogu, setpositionGrogu] = useState(0)
-const handleClick =(event) =>{
+
+  const [randomNumber, setRandomNumber] = useState("");
+  const rollDice = () => {
+    const randomNumber = Math.floor(Math.random() * 4) + 1;
+    setRandomNumber(randomNumber);
+    console.log(randomNumber);
+  }
+  const [positionGrogu, setpositionGrogu] = useState(0)
+  const handleClick = (event) => {
 
 
-}
+  }
 
   return (
-    
-      <div className="page" >
-        
-        <header>
-          <h1>¡hello!</h1>
-        </header>
-        <main className="page">
-        <Board/>
 
-          <section>
-            <Dice onClickDice={rollDice}/>
-            <div className="game-status">En curso</div>
-          </section>
+    <div className="page" >
 
-          <section className="goods-container">
-            <div className="goods-item">🍪</div>
-            <div className="goods-item">🍪</div>
-            <div className="goods-item">🍪</div>
-          </section>
-          <section className="goods-container">
-            <div className="goods-item">🥚</div>
-            <div className="goods-item">🥚</div>
-            <div className="goods-item">🥚</div>
-          </section>
-          <section className="goods-container">
-            <div className="goods-item">🐸</div>
-            <div className="goods-item">🐸</div>
-            <div className="goods-item">🐸</div>
-          </section>
-          <section>
-            <button className="restart-button">Reiniciar Juego</button>
-          </section>
-        </main>
-      </div>
+      <header>
+        <h1>¡hello!</h1>
+      </header>
+      <main className="page">
+        <Board />
 
-    
+        <section>
+          <Dice onClickDice={rollDice} />
+          <div className="game-status">En curso</div>
+        </section>
+
+        <section className="goods-container">
+          <div className="goods-item">🍪</div>
+          <div className="goods-item">🍪</div>
+          <div className="goods-item">🍪</div>
+        </section>
+        <section className="goods-container">
+          <div className="goods-item">🥚</div>
+          <div className="goods-item">🥚</div>
+          <div className="goods-item">🥚</div>
+        </section>
+        <section className="goods-container">
+          <div className="goods-item">🐸</div>
+          <div className="goods-item">🐸</div>
+          <div className="goods-item">🐸</div>
+        </section>
+        <section>
+          <button className="restart-button">Reiniciar Juego</button>
+        </section>
+        <Instructions />
+      </main>
+      <Footer />
+      <Routes>
+        <Route path="/" />
+        <Route path="/instructions" element={<Instructions />} />
+      </Routes>
+    </div>
+
+
   )
 }
 
